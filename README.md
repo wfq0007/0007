@@ -1,2 +1,2 @@
 # 0007
-  term assignment
+  学期作业
