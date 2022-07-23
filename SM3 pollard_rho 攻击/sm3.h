@@ -65,11 +65,9 @@ void SM3(u8* input, unsigned int len, u8* output)
 	V[5] = IV[5];
 	V[6] = IV[6];
 	V[7] = IV[7];
-	//由于此攻击实验len均小于64，删掉这句。
-	/*
 	for (unsigned int i = 0; i < len / 64; i++) {
 		message_block(input + 64 * i);
-	}*/
+	}
 	//最后一组填充
 	int temp1 = 64 * (len / 64);
 	int temp2 = len % 64;
