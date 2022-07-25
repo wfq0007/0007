@@ -1,3 +1,5 @@
+project：implement the naïve birthday attack of reduced SM3
+
 在c++上实现了SM3生日攻击。
 
 基本思想为确定穷举消息长度。
