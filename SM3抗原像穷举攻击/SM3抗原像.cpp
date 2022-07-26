@@ -28,32 +28,34 @@ int pp(u8* output) {
 	//不存在返回-1
 }
 
-void search(int pos, int e1, int s2)
+void search(int pos, int e1, int s2,int len)
 {
-	if (pos == 0) {
-		if (pos == e1) {
-			search(pos + 24, e1, s2);
-		}
-		else {
-			search(pos + 1, e1, s2);
-		}
-	}
-	else if (pos < (len - 1))
+	if (pos < (len - 1))
 	{
-		for (int i = 0; i < 0xff; i++) {
-			//printt_u8(input);
-			if (pos == e1) {
-				search(pos + 24, e1, s2);
-			}
-			else {
-				search(pos + 1, e1, s2);
+		if (pos == 0 && e1 == 0) {//固定字符串在最左边
+			search(pos + 24, e1, s2, len);
+		}
+		else if (s2 == len) {//固定字符串在最右边
+			search(pos, e1, s2, len - 24);
+		}
+		else {//在中间
+			for (int i = 0; i < 0xff; i++) {
+				//printt_u8(input);
+				if (pos == e1) {
+					search(pos + 24, e1, s2, len);
+				}
+				else {
+					search(pos + 1, e1, s2, len);
+				}
 			}
 		}
 	}
+
 	if (pos == len - 1)
 	{
 		for (int j = 0; j <= 0xff; j++)
 		{
+			//printt_u8(input);
 			SM3(input, len, output);
 			if (pp(output) != -1)
 			{
@@ -98,7 +100,8 @@ int main()
 	}
 	while (1)
 	{
-		for (int xx = 0; xx < (len - 24); xx++)
+		std::cout << "此时长度为:" << len << endl;
+		for (int xx = 0; xx <= (len - 24); xx++)
 		{
 			int w = 0;
 			for (int i = xx; i < xx + 24; i++) {
@@ -111,16 +114,9 @@ int main()
 			for (int i = xx + 24; i < len; i++) {
 				input[i] = 0x00;
 			}
-			search(0, xx, xx + 24);
-			/*
-			if (xx != 0) {
-				search(0, 0, xx);
-			}
-			if ((xx + 24) != len) {
-				search(xx + 24, xx + 24, len);
-			}*/
+			//printt_u8(input);
+			search(0, xx, xx + 24, len);
 		}
-		std::cout << "此时长度为:" << len << endl;
 		len++;
 	}
 	return 0;
