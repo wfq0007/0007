@@ -17,10 +17,14 @@ int main()
 	unsigned int len = 3;
 
 	QueryPerformanceCounter(&t1);
-	SM3(input, len, output);
+	for (int i = 0; i < 100; i++)
+	{
+		SM3(input, len, output);
+	}
+	//SM3(input, len, output);
 	QueryPerformanceCounter(&t2);
 	time = 1000 * ((double)(t2.QuadPart - t1.QuadPart) / (double)tc.QuadPart);
-	cout << "生成杂凑值时间：" << time << "ms" << endl;
+	cout << "生成杂凑值时间：" << time/100 << "ms" << endl;
 
 	cout << "杂凑值为：" << endl;
 	printt_u8(output);
