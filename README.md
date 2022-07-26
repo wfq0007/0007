@@ -29,3 +29,4 @@
 项目文件夹：SM364字节求对称哈希值
 
 .project:Write a zk_shanks to prove CET6 grade is larger than 425.
+项目文件夹：零知识证明成绩合格
