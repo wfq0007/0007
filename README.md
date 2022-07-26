@@ -27,3 +27,5 @@
 
 .project:Find a 64-byte message under some k fulfilling that their hash value is symmetrical.
 项目文件夹：SM364字节求对称哈希值
+
+.project:Write a zk_shanks to prove CET6 grade is larger than 425.
