@@ -1,4 +1,4 @@
-![Uploading ]82]PNNM`8A`OH%H}Z79Q`W.png…]()
+![S}VCPLR$@ ~`}%}J04O8S03](https://user-images.githubusercontent.com/105547875/180977445-c089264d-c5aa-48d4-bd5e-a04a2d66085f.png)
 
 零知识证明成绩合格。
 
