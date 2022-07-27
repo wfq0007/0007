@@ -1,7 +1,4 @@
 #尝试实现SM2
-#gmssl看看
-import base64
-import binascii
 from random import randint
 from gmssl import sm3,func
 import math
