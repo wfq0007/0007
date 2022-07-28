@@ -31,7 +31,7 @@
 8.project:impl sm2 with RFC6979
 项目文件夹：SM2实现
 
-10*Project: Implement the above ECMH scheme
+10.Project: Implement the above ECMH scheme
 项目文件夹：ECMH
 
 18.project：Find a key with hash value “sdu_cst_20220610” under a message composed of your name followed by your student ID. For example, “San Zhan 202000460001”.
