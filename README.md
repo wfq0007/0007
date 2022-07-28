@@ -22,6 +22,9 @@
 4.project:impl SM3 and do your best to optimize SM3 implementation (software)
 项目文件夹：sm3优化
 
+5.Project: Impl Merkle Tree following RFC6962
+项目文件夹：基于SM3的Merkle Tree
+
 7.Project: report on the application of this deduce technique in Ethereum with ECDSA
 项目文件夹：SM2由签名提取公钥
 
