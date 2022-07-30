@@ -37,6 +37,9 @@
 11.Project: Implement a PGP scheme with SM2
 项目文件夹：PGP
 
+12.Project: implement sm2 2P sign with real network communication
+项目文件夹：SM2 2P sign
+
 18.project：Find a key with hash value “sdu_cst_20220610” under a message composed of your name followed by your student ID. For example, “San Zhan 202000460001”.
 项目文件夹：SM3抗原像穷举攻击
 
