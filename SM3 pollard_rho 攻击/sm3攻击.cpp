@@ -1,22 +1,25 @@
-﻿#include <iostream>
+#include <iostream>
 #include "sm3.h"
 using namespace std;
 
 void printt_u8(u8* input);
 
+unsigned int num_b = 3;
+
 int main()
 {
+	cout << "此次攻击长度为" << 8 * num_b << "bit" << endl;
 	//存储简化的pollard_rho算法。
 	u8 input[33] = "a";
 	unsigned int len = 32;
 	u8 output1[32];
 	u8 output2[32];
 	SM3(input, 1, output1);
-	cout << "步长为1：";
-	printt_u8(output1);
+	//cout << "步长为1：";
+	//printt_u8(output1);
 	SM3(output1, 32, output2);
-	cout << "步长为2：";
-	printt_u8(output2);
+	//cout << "步长为2：";
+	//printt_u8(output2);
 	unsigned int num = 0;
 	while (1)
 	{
@@ -35,9 +38,23 @@ int main()
 		//cout << "步长为2：";
 		//printt_u8(output2);
 		//比较是否相同
-		if (output1 == output2) {
+		int tp = 0;
+		for (int i = 0; i < num_b; i++) {
+			if (output1[i] != output2[i]) {
+				break;
+			}
+			tp++;
+		}
+		if (tp == num_b) {
+			cout << "哈希值前" << num_b << "字节相同" << endl;
+			cout << "两个输入:" << endl;
+			printt_u8(temp1);
+			printt_u8(temp2);
+			cout << "两个输出:" << endl;
+			printt_u8(output1);
+			printt_u8(output2);
 			cout << "成功";
-			break;
+			exit(0);
 		}
 		if (num % 65536 == 0) {
 			cout << "第" << dec << num << "次" << endl;
