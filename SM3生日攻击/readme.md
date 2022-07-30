@@ -8,9 +8,16 @@ project：implement the naïve birthday attack of reduced SM3
 
 本代码一半一半分割方式为前一个字节的最后比特。
 
-本代码的局限性在于穷举长度以字节为单位，只能9，17，25......长。
+找到的碰撞是从最左端开始，连续num_b字节哈希值相同。
 
-另一个遗憾的是，由于本人电脑配置与时间，并未找到碰撞。
-![G4R(VQI$B4FPA3IH~N7W}(L](https://user-images.githubusercontent.com/105547875/180764225-2692c98d-0d44-4da9-9f58-6ca6c72539d5.png)
+最多是建表/穷举范围2^^16。
 
-![3CTPS6LU% 4{CUH$10 VVIF](https://user-images.githubusercontent.com/105547875/180764244-1037b755-ae5f-4320-986d-45e3d488932c.png)
+碰撞长度32bit。
+
+![X(8L`KAV_A3@0V2_DVB4Q`U](https://user-images.githubusercontent.com/105547875/181907789-21309860-5602-416a-b07d-c6ac737676e3.png)
+
+![GDJIL_VJV{2WRE(8} D$H~8](https://user-images.githubusercontent.com/105547875/181907793-b45b1c87-18ec-44ac-8eb3-320a5e3210ae.png)
+
+![AF03T 6`}3H $KJXMD8M$32](https://user-images.githubusercontent.com/105547875/181907795-243842c1-6a8d-42be-975a-5a79c787bcf7.png)
+
+![SWK8OV73D7RJCICKX`_$HEN](https://user-images.githubusercontent.com/105547875/181907797-e92123d2-b545-4507-a287-3b347eac6fdc.png)
