@@ -1,18 +1,19 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cmath>
 #include "sm3.h"
 using namespace std;
 
 int n_length = 2;
+unsigned int num_b = 4;
 //固定消息长度为32字节
 //生日攻击，选择位数，半个存储，半个穷举查
 
 unsigned int postion_it = 0;
 unsigned int postion_ot = 0;
 unsigned int num_ot = pow(2, n_length * 8) * 32;
-char* table = new char[num_ot];//哈希值为32字节长
+u8* table = new u8[num_ot];//哈希值为32字节长
 unsigned int num_it = pow(2, n_length * 8) * (n_length + 1);
-char* inputtb = new char[num_it];//输入值表，位置一一对应
+u8* inputtb = new u8[num_it];//输入值表，位置一一对应
 void printt_u8(u8* input);
 unsigned int find(u8* a);
 void search(int pos);
@@ -22,10 +23,10 @@ u8 output[33];
 
 int main()
 {
-	cout << num_ot << endl;
-	cout << num_it << endl;
+	//cout << num_ot << endl;
+	//cout << num_it << endl;
 	//选择查找位数(字节为单位）
-	cout << "此次生日攻击长度为" << 256 * n_length << "bit" << endl;
+	cout << "此次生日攻击长度为" << 8*num_b << "bit" << endl;
 	//为了操作方便，这里的一半一半手动设置固定消息长度最后一比特依次为0和1
     //一半建表
 	for (int i = 0; i < 31 - n_length; i++){
@@ -106,7 +107,7 @@ void search(int pos)
 	if (pos == 31)
 	{
 		for (int i = 0; i <= 0xff; i++) {
-			printt_u8(input);
+			//printt_u8(input);
 			SM3(input, 32, output);
 			//查表
 			unsigned int temp = find(output);
@@ -114,12 +115,16 @@ void search(int pos)
 			{
 				cout << "找到了" << endl;
 				cout << "第一个输入值：";
+				/*
 				for (int i = 0; i < 32; i++) {
 					int hhh = inputtb[temp + i];
 					if (hhh < 16) {
 						cout << "0";
 					}
 					cout << hhh;
+				}*/
+				for (int i = 0; i < 31 - n_length; i++) {
+					cout << "66";
 				}
 				unsigned int temp2 = (temp / 32) * (n_length + 1);
 				for (int i = 31-n_length; i < 32; i++){
@@ -132,7 +137,7 @@ void search(int pos)
 				cout << endl;
 				cout << "第二个输入值：";
 				printt_u8(input);
-				printt_u8(output);
+				//printt_u8(output);
 				//return;
 				exit(0);
 			}
@@ -157,14 +162,14 @@ unsigned int find(u8* a)//查表
 	for (unsigned int i = 0; i < postion_ot; i += 32)
 	{
 		tp = 0;
-		for (int j = 0; j < 32; j++)
+		for (int j = 0; j < num_b; j++)
 		{
 			if (a[j] != table[i + j]) {
 				break;
 			}
 			else {
 				tp++;
-				if (tp == 32) {
+				if (tp == num_b) {
 					return i;//返回位置。
 				}
 			}
