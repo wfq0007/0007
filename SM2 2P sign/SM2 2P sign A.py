@@ -48,7 +48,7 @@ def xcd(p,n):#前提n,p互质
 def addit(x1,y1,x2,y2,a,p):
     '''两点相加'''
     if(x1==x2 and y1==p-y2):
-        return false
+        return False
     elif(x1==x2):#倍点
         lmd=(((3*x1*x1+a)%p)*xcd(2*y1,p))%p
     else:#两个非互逆的不同点
@@ -69,6 +69,22 @@ def multipoint(x,y,k,a,p):
             xp,yp=addit(xp,yp,x,y,a,p)#"乘"
     return xp,yp
 
+def get_Z(ID,xB,yB):
+    #预处理计算Z值
+    ENTL=len(ID)*8#两字节的ID的比特长度
+    ID=hex(int(ID.encode().hex(),16))[2:].rjust(ENTL//4,'0')
+    ENTL=hex(ENTL)[2:].rjust(4,'0')
+    #print(ENTL)
+    aa = hex(a)[2:].rjust(64, '0')
+    bb = hex(b)[2:].rjust(64, '0')
+    gx = hex(GX)[2:].rjust(64, '0')
+    gy = hex(GY)[2:].rjust(64, '0')
+    xb = hex(xB)[2:].rjust(64, '0')
+    yb = hex(yB)[2:].rjust(64, '0')
+    temp=ENTL+ID+aa+bb+gx+gy+xb+yb
+    Z=sm3.sm3_hash(func.bytes_to_list(temp.encode()))
+    #Z=bin(int(Z,16))[2:].rjust(256,'0')
+    return Z
 
 #连接
 HOST=socket.gethostname()
@@ -91,7 +107,9 @@ else:
     s.send(temp.encode())
     #接收P
     P=s.recv(1024).decode()
-    Z=sm3.sm3_hash(func.bytes_to_list('22'.encode()))
+    #Z=sm3.sm3_hash(func.bytes_to_list('22'.encode()))
+    ID='identifier_for_all'
+    Z=get_Z(ID,p1x,p1y)
     message='1234abcd'
     M=Z+message
     e=sm3.sm3_hash(func.bytes_to_list(M.encode()))
