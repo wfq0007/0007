@@ -46,7 +46,7 @@ def xcd(p,n):#前提n,p互质
 def addit(x1,y1,x2,y2,a,p):
     '''两点相加'''
     if(x1==x2 and y1==p-y2):
-        return false
+        return False
     elif(x1==x2):#倍点
         lmd=(((3*x1*x1+a)%p)*xcd(2*y1,p))%p
     else:#两个非互逆的不同点
